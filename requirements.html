@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ماذا يقدم التطبيق — نظام إدارة وتتبع حافلات نقل الطلاب</title>
+<style>
+@font-face { font-family: 'Tajawal'; src: url('fonts/Tajawal-Regular.ttf') format('truetype'); font-weight: 400; }
+@font-face { font-family: 'Tajawal'; src: url('fonts/Tajawal-Medium.ttf') format('truetype'); font-weight: 500; }
+@font-face { font-family: 'Tajawal'; src: url('fonts/Tajawal-Bold.ttf') format('truetype'); font-weight: 700; }
+
+:root {
+  --blue: #0b3b6f;
+  --blue-2: #1d5a99;
+  --green: #12806a;
+  --gold: #c8930c;
+  --red: #c0392b;
+  --ink: #1e2f42;
+  --muted: #5b6b7c;
+  --line: #dde7f1;
+  --soft: #f4f8fc;
+  --mint: #e9f6f1;
+  --sky: #eaf2fb;
+  --sand: #fbf5e6;
+  --rose: #fcefed;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@page { size: A4; margin: 0; }
+html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: 'Tajawal', sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.65; background: #fff; }
+b { font-weight: 700; }
+svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* ===== الصفحة ===== */
+.page {
+  width: 210mm; height: 297mm;
+  padding: 19mm 14mm 16mm;
+  position: relative; overflow: hidden;
+  page-break-after: always; background: #fff;
+}
+.page::before {
+  content: ''; position: absolute; top: 0; right: 0; left: 0; height: 5px;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+}
+.phead {
+  position: absolute; top: 9mm; right: 16mm; left: 16mm;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 8.5pt; color: var(--muted);
+}
+.phead .brand { color: var(--blue); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.phead .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+.pfoot {
+  position: absolute; bottom: 9mm; right: 16mm; left: 16mm;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 8.5pt; color: var(--muted);
+  border-top: 1px solid var(--line); padding-top: 6px;
+}
+.pfoot .pg {
+  background: var(--blue); color: #fff; font-weight: 700;
+  border-radius: 20px; padding: 1px 12px; font-size: 8.5pt;
+}
+
+/* ===== عناوين الأقسام ===== */
+.sec { display: flex; align-items: center; gap: 12px; margin: 2px 0 8px; }
+.sec .num {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: linear-gradient(145deg, var(--blue), var(--green));
+  color: #fff; font-weight: 700; font-size: 14pt;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.sec h2 { font-size: 16.5pt; color: var(--blue); font-weight: 700; white-space: nowrap; }
+.sec::after { content: ''; flex: 1; height: 2px; background: linear-gradient(270deg, var(--line), transparent); }
+.sec.mt { margin-top: 14px; }
+.lead { color: #34475b; margin-bottom: 12px; font-size: 11pt; }
+.sub { font-size: 12pt; color: var(--blue); font-weight: 700; margin: 7px 0 6px; display: flex; align-items: center; gap: 8px; }
+.sub::before { content: ''; width: 18px; height: 3px; border-radius: 2px; background: var(--green); }
+
+/* ===== ملاحظات ===== */
+.callout {
+  display: flex; gap: 12px; align-items: flex-start;
+  border-radius: 12px; padding: 10px 14px; margin-top: 10px; font-size: 10.3pt; line-height: 1.55;
+}
+.callout .ic {
+  width: 28px; height: 28px; border-radius: 9px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: #fff;
+}
+.callout .ic svg.i { width: 15px; height: 15px; }
+.callout.green { background: var(--mint); }
+.callout.green .ic { background: var(--green); }
+.callout.green b.t { color: var(--green); }
+.callout.yellow { background: var(--sand); }
+.callout.yellow .ic { background: var(--gold); }
+.callout.yellow b.t { color: #8a6500; }
+.callout.hero { background: linear-gradient(135deg, var(--blue), var(--green)); color: #fff; }
+.callout.hero .ic { background: rgba(255,255,255,.18); }
+.callout.hero b.t { color: #fff; }
+
+/* ===== الغلاف ===== */
+.cover { padding: 0; }
+.cover::before { display: none; }
+.cover-top {
+  height: 192mm; position: relative; overflow: hidden;
+  background: linear-gradient(150deg, #0a3360 0%, #0b3b6f 35%, #0f6470 70%, #12806a 100%);
+  color: #fff; padding: 20mm 18mm 0;
+}
+.cover-top .glow1, .cover-top .glow2 { position: absolute; border-radius: 50%; }
+.cover-top .glow1 { width: 120mm; height: 120mm; left: -40mm; top: -40mm; background: rgba(255,255,255,.06); }
+.cover-top .glow2 { width: 70mm; height: 70mm; right: -20mm; bottom: 30mm; background: rgba(255,255,255,.05); }
+.cover .team { display: flex; align-items: center; gap: 12px; }
+.cover .team .name { font-size: 15pt; font-weight: 700; letter-spacing: .2px; }
+.cover .team .sep { width: 1px; height: 18px; background: rgba(255,255,255,.45); }
+.cover .team .url { font-size: 10pt; opacity: .75; direction: ltr; letter-spacing: .6px; }
+.cover .kick { margin-top: 18mm; font-size: 11pt; opacity: .8; letter-spacing: .3px; }
+.cover h1 { font-size: 31pt; line-height: 1.35; font-weight: 700; margin-top: 4px; }
+.cover h1 span { color: #7ff0cf; }
+.cover .desc { margin-top: 12px; font-size: 11.5pt; line-height: 1.85; opacity: .92; max-width: 160mm; }
+.cover .route { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 62mm; }
+.cover-bottom { padding: 18mm 18mm 0; }
+.toc h3 { font-size: 12pt; color: var(--blue); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.toc h3::before { content: ''; width: 18px; height: 3px; border-radius: 2px; background: var(--green); }
+.toc ol { list-style: none; display: flex; flex-direction: column; }
+.toc li {
+  display: flex; align-items: center; gap: 10px; padding: 6px 0;
+  border-bottom: 1px dashed var(--line); font-size: 10.8pt;
+}
+.toc li .n { width: 22px; height: 22px; border-radius: 6px; background: var(--sky); color: var(--blue); font-weight: 700; font-size: 9pt; display: flex; align-items: center; justify-content: center; }
+.toc li .p { margin-right: auto; color: var(--muted); font-size: 9pt; }
+
+/* ===== بطاقة الفيتشر ===== */
+.feats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-items: start; }
+.feats.one { display: flex; flex-direction: column; }
+.feat {
+  display: flex; gap: 8px; align-items: flex-start;
+  border: 1px solid var(--line); border-radius: 11px; padding: 6px 10px;
+  background: #fff;
+}
+.feat .ic {
+  width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+}
+.feat .ic svg.i { width: 14px; height: 14px; }
+.feat h4 { font-size: 10pt; margin-bottom: 0; }
+.feat p { font-size: 9.1pt; color: #3b4d60; line-height: 1.45; }
+.feat .tag {
+  font-size: 8.3pt; font-weight: 700; border-radius: 20px; padding: 0 9px;
+  display: inline-block; margin-right: 6px; vertical-align: middle;
+}
+.tag.live { background: var(--mint); color: var(--green); }
+.tag.new { background: var(--sky); color: var(--blue-2); }
+.tag.smart { background: var(--sand); color: #8a6500; }
+.tag.uniq { background: var(--green); color: #fff; }
+
+/* نسخة مضغوطة للصفحات المليانة (الطالب) */
+.feats.dense { gap: 4px; }
+.feats.dense .feat { padding: 4px 8px; gap: 6px; }
+.feats.dense .feat .ic { width: 22px; height: 22px; border-radius: 7px; }
+.feats.dense .feat .ic svg.i { width: 12px; height: 12px; }
+.feats.dense .feat h4 { font-size: 9.4pt; }
+.feats.dense .feat p { font-size: 8.7pt; line-height: 1.38; }
+/* بطاقات الـ hero للأدوار لما الصفحة مليانة */
+.rolehero.tight { padding: 7px 14px; margin-bottom: 7px; }
+.rolehero.tight .ic { width: 32px; height: 32px; }
+.rolehero.tight .ic svg.i { width: 18px; height: 18px; }
+.rolehero.tight h3 { font-size: 12pt; }
+.rolehero.tight p { font-size: 9.3pt; line-height: 1.45; }
+
+/* كروت الحصرية — موجودة عندنا بس */
+.feat.uniq { background: var(--mint); border-color: #bfe3d6; }
+.feat.uniq .ic { background: var(--green) !important; }
+.sub.vs { color: var(--green); }
+.sub.vs::before { background: var(--green); }
+
+/* صفحات الأدوار — تلوين */
+.pg-student .feat .ic { background: var(--blue); }
+.pg-student .feat h4 { color: var(--blue); }
+.pg-driver .feat .ic { background: var(--green); }
+.pg-driver .feat h4 { color: var(--green); }
+.pg-admin .feat .ic { background: var(--gold); }
+.pg-admin .feat h4 { color: #8a6500; }
+
+/* ترقيم الكروت — رقم القسم.رقم الكارت */
+.page { counter-reset: fcard; }
+.feat { counter-increment: fcard; }
+.feat h4::before {
+  font-size: 8pt; font-weight: 700; border-radius: 6px;
+  padding: 0 6px; margin-inline-end: 6px; vertical-align: 1px;
+  background: var(--soft); border: 1px solid var(--line); color: var(--muted);
+}
+.pg-student .feat h4::before { content: '1.' counter(fcard); color: var(--blue); }
+.pg-driver .feat h4::before { content: '2.' counter(fcard); color: var(--green); }
+.pg-admin .feat h4::before { content: '3.' counter(fcard); color: #8a6500; }
+
+/* ===== بانر الدور ===== */
+.rolehero {
+  border-radius: 14px; padding: 9px 16px; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 12px; color: #fff;
+}
+.rolehero .ic {
+  width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0;
+  background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center;
+}
+.rolehero .ic svg.i { width: 20px; height: 20px; }
+.rolehero h3 { font-size: 13pt; }
+.rolehero p { font-size: 9.8pt; opacity: .92; line-height: 1.5; }
+.rolehero.student { background: linear-gradient(135deg, var(--blue), var(--blue-2)); }
+.rolehero.driver { background: linear-gradient(135deg, #0d6a58, var(--green)); }
+.rolehero.admin { background: linear-gradient(135deg, #8a6500, var(--gold)); }
+</style>
+</head>
+<body>
+
+<!-- ===== أيقونات ===== -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 10h16M8 17v3M16 17v3"/><circle cx="8" cy="13.5" r=".8"/><circle cx="16" cy="13.5" r=".8"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.6.8 2.6 2.6 3 5.2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M20 18v3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 20h18M6 20v-6M11 20V8M16 20v-9M21 20V4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M10 21a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-grad" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M22 9v6"/></symbol>
+  <symbol id="i-dash" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/></symbol>
+  <symbol id="i-uni" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M19 21V10M9 21v-6h6v6M2 10l10-6 10 6z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L3 10.5l7 2.5 2.5 7z"/><path d="M10 13l4-4"/></symbol>
+  <symbol id="i-sos" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 8v5M12 16.5v.01"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
+  <symbol id="i-gps" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+  <symbol id="i-steer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 14.5V21M9.6 11.3L3.4 9.6M14.4 11.3l6.2-1.7"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.7 6.3.8-4.6 4.3 1.2 6.2-5.6-3-5.6 3 1.2-6.2L3 9.5l6.3-.8z"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M7 11V6a2 2 0 0 1 4 0v5M11 11V4a2 2 0 0 1 4 0v7M15 11V6a2 2 0 0 1 4 0v7c0 5-3 8-6.5 8S6 18.5 5 15l-2-3c-.8-1.2.6-2.6 1.8-1.8z"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="5.5" r="2.5"/><path d="M8 18.5h6a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8" stroke-dasharray="3 2.5"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M4 12h16"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l5 5V4L6 9H4a1 1 0 0 0-1 1zM15.5 8.5a4.5 4.5 0 0 1 0 7M18.5 5.5a8.5 8.5 0 0 1 0 13"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 13.5A8.5 8.5 0 1 1 10.5 4 6.8 6.8 0 0 0 20 13.5z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
+</svg>
+
+<!-- ==================== صفحة 1: الغلاف ==================== -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="glow1"></div><div class="glow2"></div>
+    <div class="kick">دليل المميزات — ما الذي يقدمه النظام لكل طرف</div>
+    <h1>لوتس باص<br><span>ماذا يقدم التطبيق؟</span></h1>
+    <p class="desc">تطبيق واحد يخدم ثلاثة أطراف في منظومة النقل الجامعي — لكل منهم أدواته الخاصة المصممة على احتياجه الفعلي: الطالب يتابع ويحجز، السائق يشغّل ويرى الطلب، والإدارة تدير وتحكم بالأرقام.</p>
+    <svg class="route" viewBox="0 0 800 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-10 200 C 120 90, 230 230, 360 140 S 600 40, 810 120" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="16" stroke-linecap="round"/>
+      <path d="M-10 200 C 120 90, 230 230, 360 140 S 600 40, 810 120" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2.5" stroke-dasharray="10 9" stroke-linecap="round"/>
+      <g fill="#fff">
+        <circle cx="105" cy="140" r="8"/><circle cx="105" cy="140" r="15" fill="rgba(255,255,255,.18)"/>
+        <circle cx="360" cy="140" r="8"/><circle cx="360" cy="140" r="15" fill="rgba(255,255,255,.18)"/>
+        <circle cx="690" cy="82" r="8"/><circle cx="690" cy="82" r="15" fill="rgba(255,255,255,.18)"/>
+      </g>
+      <g transform="translate(505 62)">
+        <circle r="26" fill="#7ff0cf"/>
+        <g transform="translate(-12 -12)" fill="none" stroke="#0b3b6f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 10h16M8 17v3M16 17v3"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="toc">
+      <h3>محتويات الدليل</h3>
+      <ol>
+        <li><span class="n">1</span> ماذا يقدم التطبيق للطالب؟ <span class="p">2</span></li>
+        <li><span class="n">2</span> ماذا يقدم التطبيق للسائق؟ <span class="p">3</span></li>
+        <li><span class="n">3</span> ماذا يقدم التطبيق للإدارة؟ <span class="p">4</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== صفحة 2: الطالب ==================== -->
+<div class="page pg-student">
+  <div class="phead"><span class="brand"><span class="dot"></span>لوتس باص — ماذا يقدم التطبيق</span></div>
+
+  <div class="sec"><span class="num">1</span><h2>ماذا يقدم التطبيق للطالب؟</h2></div>
+  <div class="sub vs">موجود عندنا بس — مش موجود في سويفل</div>
+  <div class="feats">
+    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-hand"/></svg></div><div><h4>زر «أنا جاهز»</h4><p>تختار محطة ركوبك من خريطة أو قائمة — فتظهر فوراً للسائق على تلك المحطة مع إمكانية جعلها افتراضية. سويفل مفيهاش أي طريقة يعرف بيها الكابتن مين مستني فين.</p></div></div>
+    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-route"/></svg></div><div><h4>رحلة أقصر — محطات فاضية بتتعدّي</h4><p>السائق يشوف المحطات اللي مفيش عليها حد ويعدّيها — فأنت توصل أسرع. في سويفل الباص بيقف كل موقف حتى لو فاضي.</p></div></div>
+    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-share"/></svg></div><div><h4>مشاركة الرحلة مع الأهل</h4><p>لينك تتبع عام تبعته لأهلك على واتساب — يشوفوا حافلتك بتحرك لايف على الخريطة بدون تحميل تطبيق أو حساب.</p></div></div>
+    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-zap"/></svg></div><div><h4>مساعد AI يحلل جدولك الدراسي</h4><p>ترفع ملف جدولك — موديل ذكاء اصطناعي يحلله ويقترح أنسب مواعيد لرحلاتك ذهاباً وعودة لكل يوم، لأن التطبيق عارف الباص بياخد وقت قد إيه للوصول للجامعة. تطبيقات النقل العام معندهاش فكرة عن جدولك.</p></div></div>
+    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-chart"/></svg></div><div><h4>توقع الازدحام</h4><p>«هذه الرحلة تكتمل عادةً — احجز مبكراً» — تنبيه مبني على متوسط الإشغال التاريخي لكل موعد يحميك من مفاجأة «مفيش مكان».</p></div></div>
+    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>فاتك الموعد؟ بديل فوري</h4><p>لو رحلتك فاتت يعرضلك التطبيق أقرب موعد قادم فيه مقاعد مع زر حجز مباشر — بدل الوقوف عند البوابة بلا معلومة.</p></div></div>
+    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-gps"/></svg></div><div><h4>حالة الباص بتتحدث لوحدها</h4><p>تشوف حالة الباص حية في كل مرحلة: «لم يتحرك بعد» لسه في محطة البداية → «في الطريق» أول ما يدخل خط السير → «وصل الجامعة» عند البوابة → «انتهت». كله بيتغير تلقائياً من موقع الباص نفسه — مفيش حد بيحدث يدوي ومفيش معلومة قديمة.</p></div></div>
+  </div>
+
+  <div class="sub">وموجود عندنا وعندهم — الأساسيات</div>
+  <div class="feats dense">
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-pin"/></svg></div><div><h4>خريطة حية للحافلة</h4><p>موقع حافلتك يتحرك لحظياً على الخريطة مع خط السير الحقيقي على الشوارع والكباري — مش مسار مستقيم وهمي — وكل محطات خطك مرقمة وواضحة.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-clock"/></svg></div><div><h4>وقت الوصول المتوقع</h4><p>مش بس «الباص هيوصل محطتك بعد ~X دقيقة» — التطبيق بيحسب من موقع الباص الحي هتوصل الجامعة الساعة كام بالظبط، والسائق يقدر يحدد وقت تقديري للرحلة — فأنت تعرف وقت كل مشوارك مش بس خط سيره.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>حجز المقاعد وقائمة الانتظار</h4><p>تحجز موعد ذهابك وعودتك بضغطة — لو الرحلة مكتملة تدخل قائمة انتظار تُرقّيك تلقائياً أول ما مقعد يفضى، وإشعار يريحك من المتابعة اليدوية.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-qr"/></svg></div><div><h4>بطاقة ركوب QR</h4><p>بطاقة شخصية باسمك تُمسح عند الباب بدل الكارنيه الورقي — تتحقق من اشتراكك لحظياً، ولا تنفع لغيرك ولا تتصوّر وتتعار.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-bell"/></svg></div><div><h4>إشعارات موجهة — مش إزعاج عام</h4><p>يوصلك فقط ما يخصك: «الحافلة اقتربت من محطتك»، تحديثات سائقك، وإلغاء موعد محجوز مع اقتراح أقرب بديل — بدل الغرق في 200 رسالة واتساب.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-sos"/></svg></div><div><h4>زر طوارئ SOS</h4><p>ضغطة واحدة توصل تنبيهاً فورياً باسمك ورحلتك للإدارة ولسائق الباص — أمان حقيقي مش مجرد إحساس.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-wallet"/></svg></div><div><h4>دفع الاشتراك من التطبيق</h4><p>تدفع من التطبيق بخطط مرنة — شهري، اتجاه واحد، أيام محددة، أو تذاكر بالرحلة — ببوابة دفع إلكتروني بدل الطوابير والكاش.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-star"/></svg></div><div><h4>تقييم وبلاغات</h4><p>تقيّم الرحلة والسائق بالنجوم وتبعت «بلاغ مشكلة» مصنّف للإدارة — صوتك بقى موثق مش رسالة تضيع في جروب.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-bus"/></svg></div><div><h4>بيانات الحافلة والسائق</h4><p>تشوف اسم سائقك ورقم الحافلة وتتواصل معاه من جوه التطبيق — بدل ما رقم السائق يتنشر علناً لكل الجروب.</p></div></div>
+  </div>
+
+  <div class="pfoot"><span>لوتس باص — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">2</span></div>
+</div>
+
+<!-- ==================== صفحة 3: السائق ==================== -->
+<div class="page pg-driver">
+  <div class="phead"><span class="brand"><span class="dot"></span>لوتس باص — ماذا يقدم التطبيق</span></div>
+
+  <div class="sec"><span class="num">2</span><h2>ماذا يقدم التطبيق للسائق؟</h2></div>
+  <div class="rolehero driver">
+    <div class="ic"><svg class="i"><use href="#i-steer"/></svg></div>
+    <div><h3>شغل أبسط — بلا اتصالات وبلا تخمين</h3><p>السائق كان بيرد على عشرات المكالمات وهو بيسوق — النهاردة يركب رحلته بزرين، ويشوف الطلب على محطاته على الخريطة.</p></div>
+  </div>
+
+  <div class="feats">
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-zap"/></svg></div><div><h4>زرين بس: «ابدأ الرحلة» و«أنهِها»</h4><p>واجهة بسيطة عمداً — تفتح التطبيق وتدوس «ابدأ» فتظهر حافلتك فوراً على خريطة كل طلاب الخط. مفيش خطوات تانية تشتتك عن السواقة.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-gps"/></svg></div><div><h4>بثّ الموقع تلقائياً</h4><p>الموقع يُبثّ في الخلفية أثناء الرحلة فقط — بيحمي بطاريتك وخصوصيتك: محدش بيتتبعك خارج مواعيد الشغل.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-zap"/></svg></div><div><h4>حالة الرحلة بتتغير لوحدها</h4><p>من غير أي زرار: «لم تبدأ» في محطة البداية → «في الطريق» أول ما تتحرك على خط السير → «وصل الجامعة» عند البوابة → «انتهت». التطبيق بيقرأ موقعك ويحدث الحالة للطلاب والإدارة لحظياً — زي سويفل بالظبط.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-users"/></svg></div><div><h4>خريطة الطلب على محطاته</h4><p>أيقونات الطلاب المنتظرين فوق كل محطة بعددهم — تعرف قبل ما تتحرك مين مستني وفين، من غير أسماء ولا بيانات شخصية.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-route"/></svg></div><div><h4>تخطي المحطات الفاضية</h4><p>كارت «وفّر وقت» يوريك المحطات القادمة اللي مفيش عليها حاجزين ولا منتظرين — تعدّيها بثقة وتقصّر الرحلة بدل الوقوف في الفاضي.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-scan"/></svg></div><div><h4>مسح QR للركوب + عداد حي</h4><p>تمسح بطاقة الطالب عند الباب — النظام يتحقق من الاشتراك، يرفض البطاقة المكررة، ويرفع عداد الركاب لحظياً. ركوب موثق من غير دفاتر.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-list"/></svg></div><div><h4>كشف ركوب يدوي احتياطي</h4><p>لو المسح تعذر لأي سبب — قائمة حاجزي رحلتك جاهزة تعلّم عليها يدوياً بنفس أثر المسح. الرحلة متوقفش أبداً على تقنية واحدة.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-clock"/></svg></div><div><h4>رحلاته مجدولة وواضحة</h4><p>يشوف مواعيد رحلاته لليوم مرتبة — التالية واللي بعدها — بدل ورقة مواعيد بتضيع أو جدول يتبعت صورة على الواتساب.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-phone"/></svg></div><div><h4>مفيش مكالمات — فيه شات جوه التطبيق</h4><p>الطالب مش هيرن عليك — لو احتاجك هيبعتلك رسالة في شات صغير جوه التطبيق زي inDrive بالظبط، ترد عليه لما توقف. والخريطة أصلاً بترد على سؤال «الباص فين» — مفيش رنّة وأنت ورا الطارة.</p></div></div>
+  </div>
+
+  <div class="callout green"><div class="ic"><svg class="i"><use href="#i-check"/></svg></div><div><b class="t">الخلاصة ليك:</b> أقل تشتيت، أقل مكالمات، ومعلومة واضحة عن الطلب على كل محطة — رحلتك أسرع وأهدى وأأمن.</div></div>
+
+  <div class="pfoot"><span>لوتس باص — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">3</span></div>
+</div>
+
+<!-- ==================== صفحة 4: الإدارة ==================== -->
+<div class="page pg-admin">
+  <div class="phead"><span class="brand"><span class="dot"></span>لوتس باص — ماذا يقدم التطبيق</span></div>
+
+  <div class="sec"><span class="num">3</span><h2>ماذا يقدم التطبيق للإدارة؟</h2></div>
+  <div class="rolehero admin">
+    <div class="ic"><svg class="i"><use href="#i-dash"/></svg></div>
+    <div><h3>تحكم كامل — من غير رسايل يدوية</h3><p>الإدارة كانت بتكتب كل حاجة بإيدها في الجروب — النهاردة بتنشر الرحلات بضغطتين، وبتتابع التشغيل لايف، وبتحصل على أرقام حقيقية لأول مرة.</p></div>
+  </div>
+
+  <div class="feats">
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-send"/></svg></div><div><h4>نشر جدول اليوم مع مراجعة قبل التأكيد</h4><p>تدوس «نشر» فتتجهّز قائمة رحلات اليوم — تراجعها وتعدّل اللي يحتاج: تشيل خط النهاردة، تغيّر موعد، أو تزوّد حافلة على خط مزدحم — وبعدين «تأكيد النشر». مفيش رحلة بتتنشر قبل موافقتك.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>حرية كاملة — رحلة برحلة</h4><p>تضيف رحلة منفردة في أي وقت — تختار الخط والاتجاه والساعة والسائق والسعة — وتعدّل أو تلغي أي رحلة موجودة. النشر اليومي اختصار سريع، مش قيد: الجدول بيتشكّل على قد احتياج كل يوم.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-chart"/></svg></div><div><h4>لوحة طلب مباشرة</h4><p>عدد الحجوزات لكل موعد ظاهرلك قبل الغد — الموعد الضعيف تلغيه أو تدمجه بضغطة، وحاجزيه يوصلهم إشعار تلقائي مع أقرب بديل. مفيش حافلة بتتحرك فاضية.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-pin"/></svg></div><div><h4>متابعة حية للتشغيل</h4><p>الرحلات الجارية على الخريطة، نسبة تقدمها، عدد ركابها الفعلي، وآخر تحديث من كل حافلة — عينك على الأسطول كله لحظياً.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-wallet"/></svg></div><div><h4>إدارة الاشتراكات والتحصيل</h4><p>تتابع المشتركين وأرصدتهم وخططهم — والدفع الإلكتروني من التطبيق يعني تحصيل موثق بلا كاش وبلا طوابير وبلا كارنيهات ورقية تتزوّر أو تتعار.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-doc"/></svg></div><div><h4>تقارير قابلة للتصدير PDF/Excel</h4><p>أعداد الركاب الفعلية لكل خط، الالتزام بالمواعيد، تقييمات السائقين — أرقام تشغيلية حقيقية لأول مرة تتحول لقرارات عندك: خط يتقوى ولا موعد يتعدل.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-doc"/></svg></div><div><h4>متابعة البلاغات</h4><p>بلاغات الطلاب مصنفة ومتتبعة بحالة «مفتوح/مغلق» — الشكوى مبقتش تتقال وتتنسى، ليها سجل ومسؤول عندك.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-shield"/></svg></div><div><h4>حماية دخل الاشتراكات</h4><p>قاعدة «مَن لم يستلم لن يركب» بتتنفذ آلياً ببطاقة QR — كل مسحة تتحقق من الهوية والسريان. مفيش ركوب بالبركة ومفيش دخل بيضيع منك.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-users"/></svg></div><div><h4>خصوصية الطلاب محفوظة</h4><p>السائق يشوف أعداد المنتظرين فقط — مفيش أسماء ولا أرقام تليفونات بتتنشر. سياسة خصوصية مبنية في النظام اللي بتديره مش وعود شفهية.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>سياسات مثبتة للجميع</h4><p>آخر موعد عودة وقواعد الركوب بتنشرها دائماً داخل التطبيق — مش بتضيع وسط الرسايل ومحدش يقدر يقول «مابعرفش».</p></div></div>
+  </div>
+
+  <div class="callout green" style="margin-top:8px"><div class="ic"><svg class="i"><use href="#i-check"/></svg></div><div><b class="t">الخلاصة ليك:</b> من «كتابة يدوية ومعلومة مفقودة» لـ«نشر بضغطة، متابعة لايف، وقرارات مبنية على أرقام حقيقية» — مع حماية دخل الاشتراكات وخصوصية الطلاب.</div></div>
+
+  <div class="pfoot"><span>لوتس باص — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">4</span></div>
+</div>
+
+
+</body>
+</html>
