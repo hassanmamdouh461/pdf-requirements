@@ -26,37 +26,57 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 @page { size: A4; margin: 0; }
 html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-body { font-family: 'Tajawal', sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.65; background: #fff; }
+body {
+  font-family: 'Tajawal', sans-serif;
+  color: var(--ink);
+  font-size: 10.5pt;
+  line-height: 1.65;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+  margin: 0;
+}
 b { font-weight: 700; }
 svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
 /* ===== الصفحة ===== */
 .page {
   width: 210mm; height: 297mm;
-  padding: 19mm 14mm 16mm;
+  padding: 17mm 14mm 14mm;
   position: relative; overflow: hidden;
   page-break-after: always; background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
 }
 .page::before {
   content: ''; position: absolute; top: 0; right: 0; left: 0; height: 5px;
   background: linear-gradient(90deg, var(--green), var(--blue));
 }
 .phead {
-  position: absolute; top: 9mm; right: 16mm; left: 16mm;
+  position: absolute; top: 8mm; right: 14mm; left: 14mm;
   display: flex; justify-content: space-between; align-items: center;
   font-size: 8.5pt; color: var(--muted);
 }
 .phead .brand { color: var(--blue); font-weight: 700; display: flex; align-items: center; gap: 6px; }
 .phead .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
 .pfoot {
-  position: absolute; bottom: 9mm; right: 16mm; left: 16mm;
+  position: absolute; bottom: 8mm; right: 14mm; left: 14mm;
   display: flex; justify-content: space-between; align-items: center;
   font-size: 8.5pt; color: var(--muted);
-  border-top: 1px solid var(--line); padding-top: 6px;
+  border-top: 1px solid var(--line); padding-top: 5px;
 }
 .pfoot .pg {
   background: var(--blue); color: #fff; font-weight: 700;
   border-radius: 20px; padding: 1px 12px; font-size: 8.5pt;
+}
+
+@media print {
+  body { background: #fff; padding: 0; display: block; }
+  .page { margin: 0; box-shadow: none; border-radius: 0; }
 }
 
 /* ===== عناوين الأقسام ===== */
@@ -126,20 +146,28 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .toc li .p { margin-right: auto; color: var(--muted); font-size: 9pt; }
 
 /* ===== بطاقة الفيتشر ===== */
-.feats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-items: start; }
+.feats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  align-items: stretch; /* توحيد ارتفاع الكروت في نفس الصف لإلغاء أي فراغات */
+}
 .feats.one { display: flex; flex-direction: column; }
 .feat {
   display: flex; gap: 8px; align-items: flex-start;
   border: 1px solid var(--line); border-radius: 11px; padding: 6px 10px;
   background: #fff;
+  height: 100%;
+  box-sizing: border-box;
 }
+.feat > div:last-child { flex: 1; min-width: 0; }
 .feat .ic {
   width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center; color: #fff;
 }
 .feat .ic svg.i { width: 14px; height: 14px; }
-.feat h4 { font-size: 10pt; margin-bottom: 0; }
-.feat p { font-size: 9.1pt; color: #3b4d60; line-height: 1.45; }
+.feat h4 { font-size: 9.8pt; margin-bottom: 2px; }
+.feat p { font-size: 9pt; color: #3b4d60; line-height: 1.42; }
 .feat .tag {
   font-size: 8.3pt; font-weight: 700; border-radius: 20px; padding: 0 9px;
   display: inline-block; margin-right: 6px; vertical-align: middle;
@@ -149,13 +177,14 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .tag.smart { background: var(--sand); color: #8a6500; }
 .tag.uniq { background: var(--green); color: #fff; }
 
-/* نسخة مضغوطة للصفحات المليانة (الطالب) */
-.feats.dense { gap: 4px; }
-.feats.dense .feat { padding: 4px 8px; gap: 6px; }
-.feats.dense .feat .ic { width: 22px; height: 22px; border-radius: 7px; }
-.feats.dense .feat .ic svg.i { width: 12px; height: 12px; }
-.feats.dense .feat h4 { font-size: 9.4pt; }
-.feats.dense .feat p { font-size: 8.7pt; line-height: 1.38; }
+/* توسيط الكارت الفردي الأخير في الشبكة أفقياً بدقة */
+.feats > .feat:last-child:nth-child(odd),
+.feat.center {
+  grid-column: 1 / -1;
+  width: calc(50% - 3px);
+  margin-inline: auto;
+}
+
 /* بطاقات الـ hero للأدوار لما الصفحة مليانة */
 .rolehero.tight { padding: 7px 14px; margin-bottom: 7px; }
 .rolehero.tight .ic { width: 32px; height: 32px; }
@@ -169,9 +198,23 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .sub.vs { color: var(--green); }
 .sub.vs::before { background: var(--green); }
 
-/* صفحات الأدوار — تلوين */
-.pg-student .feat .ic { background: var(--blue); }
-.pg-student .feat h4 { color: var(--blue); }
+/* صفحات الأدوار — تلوين وتنسيق متوازن */
+.pg-student .sec { margin: 0 0 5px; }
+.pg-student .sub { margin: 5px 0 5px; font-size: 11pt; }
+.pg-student .feats { gap: 5px; }
+.pg-student .feats > .feat:last-child:nth-child(odd) {
+  width: calc(50% - 2.5px);
+}
+.pg-student .feat {
+  padding: 5px 9px;
+  gap: 7px;
+  border-radius: 9px;
+}
+.pg-student .feat .ic { width: 23px; height: 23px; border-radius: 7px; background: var(--blue); }
+.pg-student .feat .ic svg.i { width: 13px; height: 13px; }
+.pg-student .feat h4 { color: var(--blue); font-size: 9.4pt; margin-bottom: 2px; }
+.pg-student .feat p { font-size: 8.7pt; line-height: 1.38; }
+
 .pg-driver .feat .ic { background: var(--green); }
 .pg-driver .feat h4 { color: var(--green); }
 .pg-admin .feat .ic { background: var(--gold); }
@@ -297,7 +340,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
   </div>
 
   <div class="sub">وموجود عندنا وعندهم — الأساسيات</div>
-  <div class="feats dense">
+  <div class="feats">
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-pin"/></svg></div><div><h4>خريطة حية للحافلة</h4><p>موقع حافلتك يتحرك لحظياً على الخريطة مع خط السير الحقيقي على الشوارع والكباري — مش مسار مستقيم وهمي — وكل محطات خطك مرقمة وواضحة.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-clock"/></svg></div><div><h4>وقت الوصول المتوقع</h4><p>مش بس «الباص هيوصل محطتك بعد ~X دقيقة» — التطبيق بيحسب من موقع الباص الحي هتوصل الجامعة الساعة كام بالظبط، والسائق يقدر يحدد وقت تقديري للرحلة — فأنت تعرف وقت كل مشوارك مش بس خط سيره.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>حجز المقاعد وقائمة الانتظار</h4><p>تحجز موعد ذهابك وعودتك بضغطة — لو الرحلة مكتملة تدخل قائمة انتظار تُرقّيك تلقائياً أول ما مقعد يفضى، وإشعار يريحك من المتابعة اليدوية.</p></div></div>
