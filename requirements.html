@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>ماذا يقدم التطبيق — نظام إدارة وتتبع حافلات نقل الطلاب</title>
+<title>Movia Bus — ماذا يقدم التطبيق؟ (نظام إدارة وتتبع حافلات نقل الطلاب)</title>
 <style>
 @font-face { font-family: 'Tajawal'; src: url('fonts/Tajawal-Regular.ttf') format('truetype'); font-weight: 400; }
 @font-face { font-family: 'Tajawal'; src: url('fonts/Tajawal-Medium.ttf') format('truetype'); font-weight: 500; }
@@ -118,32 +118,48 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .cover { padding: 0; }
 .cover::before { display: none; }
 .cover-top {
-  height: 192mm; position: relative; overflow: hidden;
+  height: 184mm; position: relative; overflow: hidden;
   background: linear-gradient(150deg, #0a3360 0%, #0b3b6f 35%, #0f6470 70%, #12806a 100%);
-  color: #fff; padding: 20mm 18mm 0;
+  color: #fff; padding: 18mm 18mm 0;
 }
 .cover-top .glow1, .cover-top .glow2 { position: absolute; border-radius: 50%; }
 .cover-top .glow1 { width: 120mm; height: 120mm; left: -40mm; top: -40mm; background: rgba(255,255,255,.06); }
 .cover-top .glow2 { width: 70mm; height: 70mm; right: -20mm; bottom: 30mm; background: rgba(255,255,255,.05); }
-.cover .team { display: flex; align-items: center; gap: 12px; }
-.cover .team .name { font-size: 15pt; font-weight: 700; letter-spacing: .2px; }
-.cover .team .sep { width: 1px; height: 18px; background: rgba(255,255,255,.45); }
-.cover .team .url { font-size: 10pt; opacity: .75; direction: ltr; letter-spacing: .6px; }
-.cover .kick { margin-top: 18mm; font-size: 11pt; opacity: .8; letter-spacing: .3px; }
-.cover h1 { font-size: 31pt; line-height: 1.35; font-weight: 700; margin-top: 4px; }
-.cover h1 span { color: #7ff0cf; }
-.cover .desc { margin-top: 12px; font-size: 11.5pt; line-height: 1.85; opacity: .92; max-width: 160mm; }
-.cover .route { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 62mm; }
-.cover-bottom { padding: 18mm 18mm 0; }
-.toc h3 { font-size: 12pt; color: var(--blue); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.toc h3::before { content: ''; width: 18px; height: 3px; border-radius: 2px; background: var(--green); }
+.cover .brand-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
+  border-radius: 30px; padding: 4px 15px; font-size: 9.5pt; font-weight: 700;
+  letter-spacing: .8px; margin-bottom: 10mm;
+}
+.cover .brand-pill .b-dot { width: 7px; height: 7px; border-radius: 50%; background: #7ff0cf; }
+.cover .kick { font-size: 11pt; opacity: .85; letter-spacing: .3px; }
+.cover h1 { font-size: 34pt; line-height: 1.25; font-weight: 800; margin-top: 5px; }
+.cover h1 span { color: #7ff0cf; font-size: 25pt; font-weight: 700; display: block; margin-top: 2px; }
+.cover .desc { margin-top: 10px; font-size: 11.2pt; line-height: 1.8; opacity: .92; max-width: 160mm; }
+.cover .route { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 58mm; }
+.cover-bottom {
+  padding: 12mm 18mm 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.cover-bottom h3 { font-size: 12pt; color: var(--blue); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.cover-bottom h3::before { content: ''; width: 18px; height: 3px; border-radius: 2px; background: var(--green); }
 .toc ol { list-style: none; display: flex; flex-direction: column; }
 .toc li {
   display: flex; align-items: center; gap: 10px; padding: 6px 0;
-  border-bottom: 1px dashed var(--line); font-size: 10.8pt;
+  border-bottom: 1px dashed var(--line); font-size: 10.3pt;
 }
 .toc li .n { width: 22px; height: 22px; border-radius: 6px; background: var(--sky); color: var(--blue); font-weight: 700; font-size: 9pt; display: flex; align-items: center; justify-content: center; }
 .toc li .p { margin-right: auto; color: var(--muted); font-size: 9pt; }
+
+.team-sec .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.team-sec .member {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--soft); border: 1px solid var(--line);
+  border-radius: 8px; padding: 6px 10px; font-size: 9.6pt; font-weight: 600; color: var(--ink);
+}
+.team-sec .member .m-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
 /* ===== بطاقة الفيتشر ===== */
 .feats {
@@ -291,8 +307,9 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 <div class="page cover">
   <div class="cover-top">
     <div class="glow1"></div><div class="glow2"></div>
+    <div class="brand-pill"><span class="b-dot"></span>MOVIA BUS • SMART CAMPUS TRANSIT</div>
     <div class="kick">دليل المميزات — ما الذي يقدمه النظام لكل طرف</div>
-    <h1>لوتس باص<br><span>ماذا يقدم التطبيق؟</span></h1>
+    <h1>Movia Bus<br><span>ماذا يقدم التطبيق؟</span></h1>
     <p class="desc">تطبيق واحد يخدم ثلاثة أطراف في منظومة النقل الجامعي — لكل منهم أدواته الخاصة المصممة على احتياجه الفعلي: الطالب يتابع ويحجز، السائق يشغّل ويرى الطلب، والإدارة تدير وتحكم بالأرقام.</p>
     <svg class="route" viewBox="0 0 800 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M-10 200 C 120 90, 230 230, 360 140 S 600 40, 810 120" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="16" stroke-linecap="round"/>
@@ -320,12 +337,24 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
         <li><span class="n">3</span> ماذا يقدم التطبيق للإدارة؟ <span class="p">4</span></li>
       </ol>
     </div>
+
+    <div class="team-sec">
+      <h3>فريق العمل</h3>
+      <div class="team-grid">
+        <div class="member"><span class="m-dot"></span>حسن ممدوح</div>
+        <div class="member"><span class="m-dot"></span>محمد شحاته</div>
+        <div class="member"><span class="m-dot"></span>أحمد عصام</div>
+        <div class="member"><span class="m-dot"></span>عبدالله جمال</div>
+        <div class="member"><span class="m-dot"></span>مولر باسم</div>
+        <div class="member"><span class="m-dot"></span>كيرلس سمير</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- ==================== صفحة 2: الطالب ==================== -->
 <div class="page pg-student">
-  <div class="phead"><span class="brand"><span class="dot"></span>لوتس باص — ماذا يقدم التطبيق</span></div>
+  <div class="phead"><span class="brand"><span class="dot"></span>Movia Bus — ماذا يقدم التطبيق</span></div>
 
   <div class="sec"><span class="num">1</span><h2>ماذا يقدم التطبيق للطالب؟</h2></div>
   <div class="sub vs">موجود عندنا بس — مش موجود في سويفل</div>
@@ -352,12 +381,12 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-bus"/></svg></div><div><h4>بيانات الحافلة والسائق</h4><p>تشوف اسم سائقك ورقم الحافلة وتتواصل معاه من جوه التطبيق — بدل ما رقم السائق يتنشر علناً لكل الجروب.</p></div></div>
   </div>
 
-  <div class="pfoot"><span>لوتس باص — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">2</span></div>
+  <div class="pfoot"><span>Movia Bus — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">2</span></div>
 </div>
 
 <!-- ==================== صفحة 3: السائق ==================== -->
 <div class="page pg-driver">
-  <div class="phead"><span class="brand"><span class="dot"></span>لوتس باص — ماذا يقدم التطبيق</span></div>
+  <div class="phead"><span class="brand"><span class="dot"></span>Movia Bus — ماذا يقدم التطبيق</span></div>
 
   <div class="sec"><span class="num">2</span><h2>ماذا يقدم التطبيق للسائق؟</h2></div>
   <div class="rolehero driver">
@@ -379,12 +408,12 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 
   <div class="callout green"><div class="ic"><svg class="i"><use href="#i-check"/></svg></div><div><b class="t">الخلاصة ليك:</b> أقل تشتيت، أقل مكالمات، ومعلومة واضحة عن الطلب على كل محطة — رحلتك أسرع وأهدى وأأمن.</div></div>
 
-  <div class="pfoot"><span>لوتس باص — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">3</span></div>
+  <div class="pfoot"><span>Movia Bus — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">3</span></div>
 </div>
 
 <!-- ==================== صفحة 4: الإدارة ==================== -->
 <div class="page pg-admin">
-  <div class="phead"><span class="brand"><span class="dot"></span>لوتس باص — ماذا يقدم التطبيق</span></div>
+  <div class="phead"><span class="brand"><span class="dot"></span>Movia Bus — ماذا يقدم التطبيق</span></div>
 
   <div class="sec"><span class="num">3</span><h2>ماذا يقدم التطبيق للإدارة؟</h2></div>
   <div class="rolehero admin">
@@ -407,7 +436,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 
   <div class="callout green" style="margin-top:8px"><div class="ic"><svg class="i"><use href="#i-check"/></svg></div><div><b class="t">الخلاصة ليك:</b> من «كتابة يدوية ومعلومة مفقودة» لـ«نشر بضغطة، متابعة لايف، وقرارات مبنية على أرقام حقيقية» — مع حماية دخل الاشتراكات وخصوصية الطلاب.</div></div>
 
-  <div class="pfoot"><span>لوتس باص — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">4</span></div>
+  <div class="pfoot"><span>Movia Bus — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">4</span></div>
 </div>
 
 
