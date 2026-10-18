@@ -150,7 +150,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .team-sec .member {
   display: flex; align-items: center; gap: 8px;
   background: var(--soft); border: 1px solid var(--line);
-  border-radius: 8px; padding: 6px 10px; font-size: 9.6pt; font-weight: 600; color: var(--ink);
+  border-radius: 8px; padding: 6px 10px; font-size: 10.2pt; font-weight: 600; color: var(--ink);
 }
 .team-sec .member .m-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
@@ -164,21 +164,21 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .feats.one { display: flex; flex-direction: column; }
 .feat {
   display: flex; gap: 8px; align-items: flex-start;
-  border: 1px solid var(--line); border-radius: 11px; padding: 6px 10px;
+  border: 1px solid var(--line); border-radius: 11px; padding: 7px 11px;
   background: #fff;
   height: 100%;
   box-sizing: border-box;
 }
 .feat > div:last-child { flex: 1; min-width: 0; }
 .feat .ic {
-  width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+  width: 27px; height: 27px; border-radius: 8px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center; color: #fff;
 }
-.feat .ic svg.i { width: 14px; height: 14px; }
-.feat h4 { font-size: 9.8pt; margin-bottom: 2px; }
-.feat p { font-size: 9pt; color: #3b4d60; line-height: 1.42; }
+.feat .ic svg.i { width: 15px; height: 15px; }
+.feat h4 { font-size: 10.8pt; margin-bottom: 2px; }
+.feat p { font-size: 9.8pt; color: #1e2f42; line-height: 1.5; }
 .feat .tag {
-  font-size: 8.3pt; font-weight: 700; border-radius: 20px; padding: 0 9px;
+  font-size: 8.5pt; font-weight: 700; border-radius: 20px; padding: 0 9px;
   display: inline-block; margin-right: 6px; vertical-align: middle;
 }
 .tag.live { background: var(--mint); color: var(--green); }
@@ -199,7 +199,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .rolehero.tight .ic { width: 32px; height: 32px; }
 .rolehero.tight .ic svg.i { width: 18px; height: 18px; }
 .rolehero.tight h3 { font-size: 12pt; }
-.rolehero.tight p { font-size: 9.3pt; line-height: 1.45; }
+.rolehero.tight p { font-size: 9.6pt; line-height: 1.45; }
 
 /* كروت الحصرية — موجودة عندنا بس */
 .feat.uniq { background: var(--mint); border-color: #bfe3d6; }
@@ -207,9 +207,9 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .sub.vs { color: var(--green); }
 .sub.vs::before { background: var(--green); }
 
-/* صفحات الأدوار — تلوين وتنسيق متوازن */
-.pg-student .sec { margin: 0 0 5px; }
-.pg-student .sub { margin: 5px 0 5px; font-size: 11pt; }
+/* صفحات الأدوار — تلوين وتنسيق متوازن وواضح للقراءة والطباعة */
+.pg-student .sec { margin: 0 0 4px; }
+.pg-student .sub { margin: 4px 0 4px; font-size: 11.5pt; }
 .pg-student .feats { gap: 5px; }
 .pg-student .feats > .feat:last-child:nth-child(odd) {
   width: calc(50% - 2.5px);
@@ -221,8 +221,8 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 }
 .pg-student .feat .ic { width: 23px; height: 23px; border-radius: 7px; background: var(--blue); }
 .pg-student .feat .ic svg.i { width: 13px; height: 13px; }
-.pg-student .feat h4 { color: var(--blue); font-size: 9.4pt; margin-bottom: 2px; }
-.pg-student .feat p { font-size: 8.7pt; line-height: 1.38; }
+.pg-student .feat h4 { color: var(--blue); font-size: 10pt; margin-bottom: 2px; }
+.pg-student .feat p { font-size: 9.2pt; line-height: 1.4; color: #1e2f42; }
 
 .pg-driver .feat .ic { background: var(--green); }
 .pg-driver .feat h4 { color: var(--green); }
@@ -233,7 +233,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .page { counter-reset: fcard; }
 .feat { counter-increment: fcard; }
 .feat h4::before {
-  font-size: 8pt; font-weight: 700; border-radius: 6px;
+  font-size: 8.5pt; font-weight: 700; border-radius: 6px;
   padding: 0 6px; margin-inline-end: 6px; vertical-align: 1px;
   background: var(--soft); border: 1px solid var(--line); color: var(--muted);
 }
