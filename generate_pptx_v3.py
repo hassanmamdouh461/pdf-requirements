@@ -168,34 +168,24 @@ def build_presentation():
     top_accent.line.fill.background()
 
     # Right Content Area: Brand + Title (Centered vertically on the right half)
-    c_box = s1.shapes.add_textbox(Inches(5.7), Inches(1.5), Inches(6.8), Inches(4.5))
+    c_box = s1.shapes.add_textbox(Inches(5.7), Inches(1.8), Inches(6.8), Inches(4.2))
     c_tf = c_box.text_frame
     c_tf.word_wrap = True
     c_tf.margin_left = c_tf.margin_top = c_tf.margin_right = c_tf.margin_bottom = 0
 
-    p_pill = c_tf.paragraphs[0]
-    set_rtl(p_pill)
-    p_pill.space_after = Pt(10)
-    r_pill = p_pill.add_run()
-    r_pill.text = "دليل المميزات الشامل — منظومة النقل الذكي"
-    r_pill.font.name = font_main
-    r_pill.font.size = Pt(13)
-    r_pill.font.bold = True
-    r_pill.font.color.rgb = c_teal_light
-
-    p_title = c_tf.add_paragraph()
+    p_title = c_tf.paragraphs[0]
     set_rtl(p_title)
     p_title.space_after = Pt(4)
     r_title = p_title.add_run()
     r_title.text = "Movia Bus"
     r_title.font.name = font_main
-    r_title.font.size = Pt(50)
+    r_title.font.size = Pt(54)
     r_title.font.bold = True
     r_title.font.color.rgb = c_white
 
     p_sub = c_tf.add_paragraph()
     set_rtl(p_sub)
-    p_sub.space_after = Pt(18)
+    p_sub.space_after = Pt(20)
     r_sub = p_sub.add_run()
     r_sub.text = "ماذا يقدم التطبيق؟"
     r_sub.font.name = font_main
