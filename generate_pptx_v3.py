@@ -313,7 +313,7 @@ def build_presentation():
 
     # 6 Exclusive Cards (Titles matching requirements.html)
     exclusive_cards = [
-        ("1.1", "زر Ready"),
+        ("1.1", "زر Ready لما السواق يبدأ الرحلة"),
         ("1.2", "رحلة أقصر — محطات فاضية بتتعدّي"),
         ("1.3", "مساعد AI يحلل جدولك الدراسي"),
         ("1.4", "مشاركة الرحلة مع الأهل"),
