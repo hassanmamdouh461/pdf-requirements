@@ -167,98 +167,49 @@ def build_presentation():
     top_accent.fill.fore_color.rgb = c_teal
     top_accent.line.fill.background()
 
-    # Right Content Area: Brand + Title + Pillars
-    c_box = s1.shapes.add_textbox(Inches(5.7), Inches(0.85), Inches(6.8), Inches(3.7))
+    # Right Content Area: Brand + Title (Centered vertically on the right half)
+    c_box = s1.shapes.add_textbox(Inches(5.7), Inches(1.5), Inches(6.8), Inches(4.5))
     c_tf = c_box.text_frame
     c_tf.word_wrap = True
     c_tf.margin_left = c_tf.margin_top = c_tf.margin_right = c_tf.margin_bottom = 0
 
     p_pill = c_tf.paragraphs[0]
     set_rtl(p_pill)
-    p_pill.space_after = Pt(8)
+    p_pill.space_after = Pt(10)
     r_pill = p_pill.add_run()
     r_pill.text = "دليل المميزات الشامل — منظومة النقل الذكي"
     r_pill.font.name = font_main
-    r_pill.font.size = Pt(12)
+    r_pill.font.size = Pt(13)
     r_pill.font.bold = True
     r_pill.font.color.rgb = c_teal_light
 
     p_title = c_tf.add_paragraph()
     set_rtl(p_title)
-    p_title.space_after = Pt(2)
+    p_title.space_after = Pt(4)
     r_title = p_title.add_run()
     r_title.text = "Movia Bus"
     r_title.font.name = font_main
-    r_title.font.size = Pt(46)
+    r_title.font.size = Pt(50)
     r_title.font.bold = True
     r_title.font.color.rgb = c_white
 
     p_sub = c_tf.add_paragraph()
     set_rtl(p_sub)
-    p_sub.space_after = Pt(14)
+    p_sub.space_after = Pt(18)
     r_sub = p_sub.add_run()
     r_sub.text = "ماذا يقدم التطبيق؟"
     r_sub.font.name = font_main
-    r_sub.font.size = Pt(28)
+    r_sub.font.size = Pt(32)
     r_sub.font.bold = True
     r_sub.font.color.rgb = c_teal_light
 
     p_desc = c_tf.add_paragraph()
     set_rtl(p_desc)
     r_desc = p_desc.add_run()
-    r_desc.text = "نظام متكامل يربط ثلاثة أطراف في تجربة نقل جامعي حديثة: الطالب يتابع ويحجز بسهولة، السائق يشغّل ويرى الطلب لايف، والإدارة تتحكم وتتابع بالأرقام والتقارير الحية."
+    r_desc.text = "نظام متكامل يربط ثلاثة أطراف في تجربة نقل جامعي حديثة ومريحة: الطالب يتابع ويحجز بسهولة، السائق يشغّل ويرى الطلب لايف، والإدارة تتحكم وتتابع بالأرقام والتقارير الحية."
     r_desc.font.name = font_main
-    r_desc.font.size = Pt(13)
+    r_desc.font.size = Pt(14)
     r_desc.font.color.rgb = RGBColor(220, 235, 248)
-
-    # 3 Summary Pillars on Cover
-    pillars = [
-        ("1", "تجربة الطالب", "15 ميزة حصرية وأساسية", c_teal),
-        ("2", "تجربة السائق", "9 ميزات تشغيل بدون مكالمات", c_blue2),
-        ("3", "لوحة الإدارة", "10 ميزات تحكم وتقارير حية", c_gold),
-    ]
-    p_w = Inches(2.13)
-    p_h = Inches(1.5)
-    p_gap = Inches(0.2)
-    for i, (num, p_title_txt, p_sub_txt, p_col) in enumerate(pillars):
-        px = Inches(5.7) + (2 - i) * (p_w + p_gap)
-        py = Inches(4.9)
-        p_card = s1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, px, py, p_w, p_h)
-        p_card.fill.solid()
-        p_card.fill.fore_color.rgb = c_navy_card
-        p_card.line.color.rgb = RGBColor(25, 75, 125)
-        p_card.line.width = Pt(1.5)
-        ptf = p_card.text_frame
-        ptf.margin_left = ptf.margin_right = Inches(0.12)
-        ptf.margin_top = Inches(0.15)
-
-        pp0 = ptf.paragraphs[0]
-        set_rtl(pp0)
-        pp0.space_after = Pt(4)
-        pr0 = pp0.add_run()
-        pr0.text = f"القسم {num}"
-        pr0.font.name = font_main
-        pr0.font.size = Pt(11)
-        pr0.font.bold = True
-        pr0.font.color.rgb = p_col
-
-        pp1 = ptf.add_paragraph()
-        set_rtl(pp1)
-        pp1.space_after = Pt(4)
-        pr1 = pp1.add_run()
-        pr1.text = p_title_txt
-        pr1.font.name = font_main
-        pr1.font.size = Pt(13)
-        pr1.font.bold = True
-        pr1.font.color.rgb = c_white
-
-        pp2 = ptf.add_paragraph()
-        set_rtl(pp2)
-        pr2 = pp2.add_run()
-        pr2.text = p_sub_txt
-        pr2.font.name = font_main
-        pr2.font.size = Pt(9.5)
-        pr2.font.color.rgb = RGBColor(180, 205, 230)
 
     # Left Area: Team Members Card (Properly Structured)
     t_card = s1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.1), Inches(4.5), Inches(5.3))
