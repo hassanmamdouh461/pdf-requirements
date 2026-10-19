@@ -249,8 +249,8 @@ def build_presentation():
     m_start_y = Inches(2.35)
 
     for i, mem in enumerate(team_members):
-        col = i % 2 # 0 right, 1 left
-        row = i // 2 # 0, 1, 2
+        col = i // 3 # 0 for first 3 (Right column in RTL), 1 for next 3 (Left column in RTL)
+        row = i % 3  # 0, 1, 2 (Top, Middle, Bottom)
         mx = m_start_x + (1 - col) * (m_w + m_gap_x)
         my = m_start_y + row * (m_h + m_gap_y)
 

@@ -146,7 +146,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .toc li .n { width: 22px; height: 22px; border-radius: 6px; background: var(--sky); color: var(--blue); font-weight: 700; font-size: 9pt; display: flex; align-items: center; justify-content: center; }
 .toc li .p { margin-right: auto; color: var(--muted); font-size: 9pt; }
 
-.team-sec .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.team-sec .team-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 7px; }
 .team-sec .member {
   display: flex; align-items: center; gap: 8px;
   background: var(--soft); border: 1px solid var(--line);
@@ -240,6 +240,16 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .pg-student .feat h4::before { content: '1.' counter(fcard); color: var(--blue); }
 .pg-driver .feat h4::before { content: '2.' counter(fcard); color: var(--green); }
 .pg-admin .feat h4::before { content: '3.' counter(fcard); color: #8a6500; }
+
+/* تصنيف المتطلب — Functional افتراضياً، Non-Functional بالعلامة nfr */
+.feat h4::after {
+  content: 'Functional';
+  display: inline-block; font-size: 7.5pt; font-weight: 700; direction: ltr;
+  white-space: nowrap; letter-spacing: .2px;
+  border-radius: 20px; padding: 0 8px; margin-inline-start: 6px; vertical-align: 1px;
+  background: var(--mint); color: var(--green);
+}
+.feat.nfr h4::after { content: 'Non-Functional'; background: var(--sand); color: #8a6500; }
 
 /* ===== بانر الدور ===== */
 .rolehero {
@@ -421,7 +431,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-doc"/></svg></div><div><h4>تقارير قابلة للتصدير PDF/Excel</h4><p>أعداد الركاب الفعلية لكل خط، الالتزام بالمواعيد، تقييمات السائقين — أرقام تشغيلية حقيقية لأول مرة تتحول لقرارات عندك: خط يتقوى ولا موعد يتعدل.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-doc"/></svg></div><div><h4>متابعة البلاغات</h4><p>بلاغات الطلاب مصنفة ومتتبعة بحالة «مفتوح/مغلق» — الشكوى مبقتش تتقال وتتنسى، ليها سجل ومسؤول عندك.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-shield"/></svg></div><div><h4>حماية دخل الاشتراكات</h4><p>قاعدة «مَن لم يستلم لن يركب» بتتنفذ آلياً ببطاقة QR — كل مسحة تتحقق من الهوية والسريان. مفيش ركوب بالبركة ومفيش دخل بيضيع منك.</p></div></div>
-    <div class="feat"><div class="ic"><svg class="i"><use href="#i-users"/></svg></div><div><h4>خصوصية الطلاب محفوظة</h4><p>السائق يشوف أعداد المنتظرين فقط — مفيش أسماء ولا أرقام تليفونات بتتنشر. سياسة خصوصية مبنية في النظام اللي بتديره مش وعود شفهية.</p></div></div>
+    <div class="feat nfr"><div class="ic"><svg class="i"><use href="#i-users"/></svg></div><div><h4>خصوصية الطلاب محفوظة</h4><p>السائق يشوف أعداد المنتظرين فقط — مفيش أسماء ولا أرقام تليفونات بتتنشر. سياسة خصوصية مبنية في النظام اللي بتديره مش وعود شفهية.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>سياسات مثبتة للجميع</h4><p>آخر موعد عودة وقواعد الركوب بتنشرها دائماً داخل التطبيق — مش بتضيع وسط الرسايل ومحدش يقدر يقول «مابعرفش».</p></div></div>
   </div>
 
