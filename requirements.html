@@ -241,15 +241,48 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .pg-driver .feat h4::before { content: '2.' counter(fcard); color: var(--green); }
 .pg-admin .feat h4::before { content: '3.' counter(fcard); color: #8a6500; }
 
-/* تصنيف المتطلب — Functional افتراضياً، Non-Functional بالعلامة nfr */
-.feat h4::after {
-  content: 'Functional';
-  display: inline-block; font-size: 7.5pt; font-weight: 700; direction: ltr;
-  white-space: nowrap; letter-spacing: .2px;
-  border-radius: 20px; padding: 0 8px; margin-inline-start: 6px; vertical-align: 1px;
-  background: var(--mint); color: var(--green);
+
+/* كروت التنفيذ لاحقاً (مؤجل خارج الديمو الحالي) */
+.sub.later { color: #8a6500; margin-top: 5px; }
+.sub.later::before { background: var(--gold); }
+.ai-note {
+  background: var(--sand); border: 1px dashed var(--gold); color: #6e5000;
+  border-radius: 8px; padding: 4px 10px; font-size: 8.6pt; line-height: 1.4;
+  margin-bottom: 5px;
 }
-.feat.nfr h4::after { content: 'Non-Functional'; background: var(--sand); color: #8a6500; }
+.ai-note b { color: #8a6500; }
+.feat.later { background: #fffdf7; border: 1px dashed #e2c574; }
+.feat.later .ic { background: var(--gold) !important; }
+.feat.later h4 { color: #8a6500 !important; }
+.feat.later .tag.smart {
+  font-size: 7.3pt; padding: 0 7px; margin-right: 5px;
+  background: var(--sand); color: #8a6500; border: 1px solid #e2c574;
+}
+
+/* صندوق تعليمات الـ AI في الصفحة الأولى */
+.cover-top { height: 156mm !important; }
+.cover .kick { margin-top: 8mm !important; }
+.cover-bottom { padding: 8mm 18mm 0 !important; }
+.cover-ai-box {
+  margin: 7mm 18mm 0;
+  background: linear-gradient(135deg, #f4f8fc 0%, #e9f6f1 100%);
+  border: 1.5px solid #12806a;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.cover-ai-box .ai-head {
+  display: flex; align-items: center; gap: 8px;
+  color: #0b3b6f; font-weight: 700; font-size: 11pt; margin-bottom: 5px;
+}
+.cover-ai-box .ai-badge {
+  background: #12806a; color: #fff; font-size: 8.2pt; font-weight: 700;
+  padding: 1px 9px; border-radius: 20px; direction: ltr;
+}
+.cover-ai-box ul {
+  margin: 0; padding-right: 18px; font-size: 9.4pt; line-height: 1.55; color: #1e2f42;
+}
+.cover-ai-box li { margin-bottom: 3px; }
+.cover-ai-box li b { color: #0b3b6f; }
 
 /* ===== بانر الدور ===== */
 .rolehero {
@@ -352,6 +385,17 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
       </div>
     </div>
   </div>
+  <div class="cover-ai-box">
+    <div class="ai-head">
+      <span>تعليمات هامة للـ AI المنفّذ للمشروع (نسخة العرض التجريبية — Demo)</span>
+      <span class="ai-badge">Cloudflare + Mockup Data</span>
+    </div>
+    <ul>
+      <li><b>الرفع والاستضافة على Cloudflare:</b> سيتم رفع هذا المشروع وتشغيله مباشرة على <b>Cloudflare (Cloudflare Pages / Workers)</b> لتقديم العرض التوضيحي (Demo)، لذا يجب بناء المشروع ليكون جاهزاً للرفع والتشغيل المباشر على كلود فلير بدون الحاجة لإعداد سيرفرات خارجية معقدة.</li>
+      <li><b>تجهيز بيانات تجريبية كاملة للعرض (Mockup Data):</b> مطلوب من الـ AI توليد وتضمين <b>بيانات افتراضية جاهزة وواقعية (Mockup Data)</b> في جميع شاشات النظام الثلاث (الطالب، السائق، الإدارة) — تشمل خطوط ومحطات، حافلات تتحرك بمحاكاة حية على الخريطة، رحلات مجدولة، حجوزات وأعداد منتظرين، إشعارات، بلاغات، وتقارير وأرقام تشغيلية — بحيث تكون كل الميزات قابلة للتجربة والاستعراض الفوري أثناء العرض بدون شاشات فارغة.</li>
+      <li><b>نطاق التنفيذ في الديمو:</b> تنفيذ جميع البطاقات المذكورة في هذا الدليل مع توفير تنقل سهل بين واجهات (الطالب / السائق / الإدارة) لأغراض العرض، <b>باستثناء البطاقتين الموجودتين في قسم «تنفيذ لاحقاً» بصفحة 2</b> فلا يتم تنفيذهما حالياً.</li>
+    </ul>
+  </div>
 </div>
 
 <!-- ==================== صفحة 2: الطالب ==================== -->
@@ -363,9 +407,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
   <div class="feats">
     <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-hand"/></svg></div><div><h4>زر Ready لما السواق يبدأ الرحلة</h4><p>تختار محطة ركوبك من خريطة أو قائمة — فتظهر فوراً للسائق على تلك المحطة مع إمكانية جعلها افتراضية. سويفل مفيهاش أي طريقة يعرف بيها الكابتن مين مستني فين.</p></div></div>
     <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-route"/></svg></div><div><h4>رحلة أقصر — محطات فاضية بتتعدّي</h4><p>السائق يشوف المحطات اللي مفيش عليها حد ويعدّيها — فأنت توصل أسرع. في سويفل الباص بيقف كل موقف حتى لو فاضي.</p></div></div>
-    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-zap"/></svg></div><div><h4>مساعد AI يحلل جدولك الدراسي</h4><p>ترفع ملف جدولك — موديل ذكاء اصطناعي يحلله ويقترح أنسب مواعيد لرحلاتك ذهاباً وعودة لكل يوم، لأن التطبيق عارف الباص بياخد وقت قد إيه للوصول للجامعة. تطبيقات النقل العام معندهاش فكرة عن جدولك.</p></div></div>
     <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-share"/></svg></div><div><h4>مشاركة الرحلة مع الأهل</h4><p>لينك تتبع عام تبعته لأهلك على واتساب — يشوفوا حافلتك بتحرك لايف على الخريطة بدون تحميل تطبيق أو حساب.</p></div></div>
-    <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-chart"/></svg></div><div><h4>توقع الازدحام بمساعدة الـ AI</h4><p>«هذه الرحلة تكتمل عادةً — احجز مبكراً» — تنبيه ذكي بمساعدة الـ AI مبني على متوسط الإشغال التاريخي لكل موعد يحميك من مفاجأة «مفيش مكان».</p></div></div>
     <div class="feat uniq"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>فاتك الموعد؟ بديل فوري</h4><p>لو رحلتك فاتت يعرضلك التطبيق أقرب موعد قادم فيه مقاعد مع زر حجز مباشر — بدل الوقوف عند البوابة بلا معلومة.</p></div></div>
   </div>
 
@@ -374,12 +416,17 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-pin"/></svg></div><div><h4>خريطة حية للحافلة</h4><p>موقع حافلتك يتحرك لحظياً على الخريطة مع خط السير الحقيقي على الشوارع والكباري — مش مسار مستقيم وهمي — وكل محطات خطك مرقمة وواضحة.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-clock"/></svg></div><div><h4>وقت الوصول المتوقع</h4><p>مش بس «الباص هيوصل محطتك بعد ~X دقيقة» — التطبيق بيحسب من موقع الباص الحي هتوصل الجامعة الساعة كام بالظبط، والسائق يقدر يحدد وقت تقديري للرحلة — فأنت تعرف وقت كل مشوارك مش بس خط سيره.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>حجز المقاعد وقائمة الانتظار</h4><p>تحجز موعد ذهابك وعودتك بضغطة — لو الرحلة مكتملة تدخل قائمة انتظار تُرقّيك تلقائياً أول ما مقعد يفضى، وإشعار يريحك من المتابعة اليدوية.</p></div></div>
-    <div class="feat"><div class="ic"><svg class="i"><use href="#i-qr"/></svg></div><div><h4>بطاقة ركوب QR</h4><p>بطاقة شخصية باسمك تُمسح عند الباب بدل الكارنيه الورقي — تتحقق من اشتراكك لحظياً، ولا تنفع لغيرك ولا تتصوّر وتتعار.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-bell"/></svg></div><div><h4>إشعارات موجهة — مش إزعاج عام</h4><p>يوصلك فقط ما يخصك: «الحافلة اقتربت من محطتك»، تحديثات سائقك، وإلغاء موعد محجوز مع اقتراح أقرب بديل — بدل الغرق في 200 رسالة واتساب.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-sos"/></svg></div><div><h4>زر طوارئ SOS</h4><p>ضغطة واحدة توصل تنبيهاً فورياً باسمك ورحلتك للإدارة ولسائق الباص — أمان حقيقي مش مجرد إحساس.</p></div></div>
-    <div class="feat"><div class="ic"><svg class="i"><use href="#i-wallet"/></svg></div><div><h4>دفع الاشتراك من التطبيق</h4><p>تدفع من التطبيق بخطط مرنة — شهري، اتجاه واحد، أيام محددة، أو تذاكر بالرحلة — ببوابة دفع إلكتروني بدل الطوابير والكاش.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-star"/></svg></div><div><h4>تقييم وبلاغات</h4><p>تقيّم الرحلة والسائق بالنجوم وتبعت «بلاغ مشكلة» مصنّف للإدارة — صوتك بقى موثق مش رسالة تضيع في جروب.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-bus"/></svg></div><div><h4>بيانات الحافلة والسائق</h4><p>تشوف اسم سائقك ورقم الحافلة وتتواصل معاه من جوه التطبيق — بدل ما رقم السائق يتنشر علناً لكل الجروب.</p></div></div>
+  </div>
+
+  <div class="sub later">تنفيذ لاحقاً — مش هيتنفذوا دلوقتي (خارج نطاق الديمو التجريبي)</div>
+  <div class="ai-note"><b>ملاحظة هامة للـ AI المنفّذ لهذا الـ PDF (ديمو / شغل تجريبي):</b> البطاقتان التاليتان («مساعد AI يحلل جدولك الدراسي» و«توقع الازدحام بمساعدة الـ AI») مؤجلتان لمرحلة مستقبلية — <b>مش هيتنفذوا دلوقتي نهائياً</b>، ولا يجب برمجتهما أو إضافتهما في النسخة التجريبية (Demo) الحالية.</div>
+  <div class="feats">
+    <div class="feat later"><div class="ic"><svg class="i"><use href="#i-zap"/></svg></div><div><h4>مساعد AI يحلل جدولك الدراسي <span class="tag smart">مش هيتنفذ دلوقتي — تنفيذ لاحقاً</span></h4><p>ترفع ملف جدولك — موديل ذكاء اصطناعي يحلله ويقترح أنسب مواعيد لرحلاتك ذهاباً وعودة لكل يوم. <b>(مؤجل للتنفيذ لاحقاً — خارج الديمو التجريبي الحالي)</b>.</p></div></div>
+    <div class="feat later"><div class="ic"><svg class="i"><use href="#i-chart"/></svg></div><div><h4>توقع الازدحام بمساعدة الـ AI <span class="tag smart">مش هيتنفذ دلوقتي — تنفيذ لاحقاً</span></h4><p>«هذه الرحلة تكتمل عادةً — احجز مبكراً» — تنبيه ذكي بمساعدة الـ AI مبني على متوسط الإشغال التاريخي لكل موعد. <b>(مؤجل للتنفيذ لاحقاً — خارج الديمو التجريبي الحالي)</b>.</p></div></div>
   </div>
 
   <div class="pfoot"><span>Movia Bus — نظام إدارة وتتبع حافلات نقل الطلاب</span><span class="pg">2</span></div>
@@ -401,9 +448,6 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-zap"/></svg></div><div><h4>حالة الرحلة بتتغير لوحدها</h4><p>من غير أي زرار: «لم تبدأ» في محطة البداية → «في الطريق» أول ما تتحرك على خط السير → «وصل الجامعة» عند البوابة → «انتهت». التطبيق بيقرأ موقعك ويحدث الحالة للطلاب والإدارة لحظياً — زي سويفل بالظبط.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-users"/></svg></div><div><h4>خريطة الطلب على محطاته</h4><p>أيقونات الطلاب المنتظرين فوق كل محطة بعددهم — تعرف قبل ما تتحرك مين مستني وفين، من غير أسماء ولا بيانات شخصية.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-route"/></svg></div><div><h4>تخطي المحطات الفاضية</h4><p>كارت «وفّر وقت» يوريك المحطات القادمة اللي مفيش عليها حاجزين ولا منتظرين — تعدّيها بثقة وتقصّر الرحلة بدل الوقوف في الفاضي.</p></div></div>
-    <div class="feat"><div class="ic"><svg class="i"><use href="#i-scan"/></svg></div><div><h4>مسح QR للركوب + عداد حي</h4><p>تمسح بطاقة الطالب عند الباب — النظام يتحقق من الاشتراك، يرفض البطاقة المكررة، ويرفع عداد الركاب لحظياً. ركوب موثق من غير دفاتر.</p></div></div>
-    <div class="feat"><div class="ic"><svg class="i"><use href="#i-list"/></svg></div><div><h4>كشف ركوب يدوي احتياطي</h4><p>لو المسح تعذر لأي سبب — قائمة حاجزي رحلتك جاهزة تعلّم عليها يدوياً بنفس أثر المسح. الرحلة متوقفش أبداً على تقنية واحدة.</p></div></div>
-    <div class="feat"><div class="ic"><svg class="i"><use href="#i-clock"/></svg></div><div><h4>رحلاته مجدولة وواضحة</h4><p>يشوف مواعيد رحلاته لليوم مرتبة — التالية واللي بعدها — بدل ورقة مواعيد بتضيع أو جدول يتبعت صورة على الواتساب.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-phone"/></svg></div><div><h4>مفيش مكالمات — فيه شات جوه التطبيق</h4><p>الطالب مش هيرن عليك — لو احتاجك هيبعتلك رسالة في شات صغير جوه التطبيق زي inDrive بالظبط، ترد عليه لما توقف. والخريطة أصلاً بترد على سؤال «الباص فين» — مفيش رنّة وأنت ورا الطارة.</p></div></div>
   </div>
 
@@ -431,7 +475,7 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-doc"/></svg></div><div><h4>تقارير قابلة للتصدير PDF/Excel</h4><p>أعداد الركاب الفعلية لكل خط، الالتزام بالمواعيد، تقييمات السائقين — أرقام تشغيلية حقيقية لأول مرة تتحول لقرارات عندك: خط يتقوى ولا موعد يتعدل.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-doc"/></svg></div><div><h4>متابعة البلاغات</h4><p>بلاغات الطلاب مصنفة ومتتبعة بحالة «مفتوح/مغلق» — الشكوى مبقتش تتقال وتتنسى، ليها سجل ومسؤول عندك.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-shield"/></svg></div><div><h4>حماية دخل الاشتراكات</h4><p>قاعدة «مَن لم يستلم لن يركب» بتتنفذ آلياً ببطاقة QR — كل مسحة تتحقق من الهوية والسريان. مفيش ركوب بالبركة ومفيش دخل بيضيع منك.</p></div></div>
-    <div class="feat nfr"><div class="ic"><svg class="i"><use href="#i-users"/></svg></div><div><h4>خصوصية الطلاب محفوظة</h4><p>السائق يشوف أعداد المنتظرين فقط — مفيش أسماء ولا أرقام تليفونات بتتنشر. سياسة خصوصية مبنية في النظام اللي بتديره مش وعود شفهية.</p></div></div>
+    <div class="feat"><div class="ic"><svg class="i"><use href="#i-users"/></svg></div><div><h4>خصوصية الطلاب محفوظة</h4><p>السائق يشوف أعداد المنتظرين فقط — مفيش أسماء ولا أرقام تليفونات بتتنشر. سياسة خصوصية مبنية في النظام اللي بتديره مش وعود شفهية.</p></div></div>
     <div class="feat"><div class="ic"><svg class="i"><use href="#i-cal"/></svg></div><div><h4>سياسات مثبتة للجميع</h4><p>آخر موعد عودة وقواعد الركوب بتنشرها دائماً داخل التطبيق — مش بتضيع وسط الرسايل ومحدش يقدر يقول «مابعرفش».</p></div></div>
   </div>
 
